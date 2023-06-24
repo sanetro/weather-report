@@ -28,8 +28,7 @@ import { CalendarModule } from './calendar/calendar.module';
     HomeModule,
     FooterModule,
     SelectdayModule,
-    CalendarModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

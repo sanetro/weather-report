@@ -10,6 +10,8 @@ import { WeatherService } from 'src/app/weather.service';
 export class HomeComponent implements OnInit {
 
   allData: any;
+  dates: any;
+  temperatures: any;
   todayTemperature: any;
 
   constructor(private weatherService: WeatherService) {
@@ -18,8 +20,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.weatherService.getData().subscribe((data)=> {
       this.allData = data;
+      this.dates = this.allData["hourly"]["time"];
+      this.temperatures = this.allData["hourly"]["temperature_2m"];
+
+      this.todayTemperature = this.weatherService.getByHourActuallTemperature(this.dates, this.temperatures);
     });
-    this.todayTemperature =  this.weatherService.getHourActuallTemperature(this.allData["hourly"]["time"], this.allData["hourly"]["temperature_2m"]);
+
+
 
   }
 

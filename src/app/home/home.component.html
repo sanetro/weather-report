@@ -1,12 +1,19 @@
-<div class="content" role="main">
+<div class="content" role="main" xmlns="http://www.w3.org/1999/html">
 
   <section class="informations">
     <h1>Welcome to the <span style="color: #0a86e7">Weather Report</span> App!</h1>
     <h2><i>Built for easy and fast weather checks...</i></h2>
 
     <code>
-      {{ todayTemperature }}
+
     </code>
+
+    <app-panel
+      [date]="1"
+      [day]="2"
+      [time]="2"
+      [temperature]="412">
+    </app-panel>
 
     <article>
       <p>With our app, you can quickly access up-to-date weather information in an instant. Whether you're planning your day, preparing for an outdoor adventure, or simply curious about the weather conditions, we've got you covered.</p><br>
@@ -19,6 +26,20 @@
     <article>
       <p>No matter where you are or where you're headed, the Weather Report App is here to make your weather checks a breeze. Experience the convenience and efficiency of staying ahead of the weather with just a few taps.</p><br>
       <p><b>Download the app now and embark on a seamless journey of weather exploration!</b></p><br>
+    </article>
+    <article>
+      Napisać aplikację frontendową, która będzie prezentowała pogodę.<br><br>
+
+      Aplikacja ma mieć następujące funkcje/ekrany:<br><br>
+
+      strona główna z obecną pogodą w Krakowie oraz pogodą jutro, oraz pojutrze<br><br>
+      pogoda godzinowa na wybrany dzień
+
+      Jeśli chodzi o wygląd interfejsu, to powinien być oparty na material design.<br><br>
+
+      Na ocenę 5.0 wymagane jest pobieranie danych z https://open-meteo.com/en/docs.<br><br>
+
+      Alpikację proszę umieścić na githubie oraz wysłać mi link na Teams.<br><br>
     </article>
   </section>
 
