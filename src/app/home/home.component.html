@@ -4,14 +4,15 @@
     <h1>Welcome to the <span style="color: #0a86e7">Weather Report</span> App!</h1>
     <h2><i>Built for easy and fast weather checks...</i></h2>
 
-    <code>
-
-    </code>
+    <span>
+      <img id="city-location-icon" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthemodestack.com%2Fwp-content%2Fuploads%2F2018%2F05%2Fcity-icon.png&f=1&nofb=1&ipt=3bc7390cfb16faf95419da087e14bfc755e41441d0c077cbd00ce0561df087d9&ipo=images">
+      <h1>Temperatures in Cracow</h1>
+    </span>
 
     <app-panel
-      [date]="1"
-      [day]="2"
-      [time]="2"
+      [date]="todayDate"
+      [day]="todayDay"
+      [time]="todayHour"
       [temperature]="todayTemperature">
     </app-panel>
 

@@ -244,6 +244,14 @@ svg#clouds {
   text-align: center;
 }
 
+#city-location-icon {
+  width: 20%;
+  height: 20%;
+  text-align: center;
+}
+
+
+
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {

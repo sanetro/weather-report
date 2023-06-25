@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit {
   allData: any;
   dates: any;
   temperatures: any;
+  todayDate: any;
+  todayDay: any
+  todayHour: any;
   todayTemperature: any;
 
   constructor(private weatherService: WeatherService) {
@@ -23,14 +26,10 @@ export class HomeComponent implements OnInit {
       this.dates = this.allData["hourly"]["time"];
       this.temperatures = this.allData["hourly"]["temperature_2m"];
 
+      this.todayDate = this.weatherService.getTodayDate();
+      this.todayDay = this.weatherService.getTodayDay();
+      this.todayHour = this.weatherService.getHourTime();
       this.todayTemperature = this.weatherService.getByHourActuallTemperature(this.dates, this.temperatures);
     });
-
-
-
   }
-
-
-
-
 }

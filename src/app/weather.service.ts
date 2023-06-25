@@ -19,6 +19,25 @@ export class WeatherService {
     return new Date(date).getHours();
   }
 
+  getHourTime() {
+    return new Date().getHours()+":00";
+  }
+
+  getTodayDay() {
+    const date = new Date(); // Create a new Date object with the current date
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return weekdays[date.getDay()];
+  }
+
+  getTodayDate() {
+    let currentDate = new Date();
+    let day = String(currentDate.getDate()).padStart(2, '0');
+    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    let year = currentDate.getFullYear();
+    let formattedDate = `${day}.${month}.${year}`;
+    return formattedDate;
+  }
+
   getByHourActuallTemperature(dates: Date[], temperatures: number[]) {
     const hourNow = new Date().getHours();
     let index = 0;
@@ -26,11 +45,11 @@ export class WeatherService {
     for (const date in dates) {
       console.log(temperatures);
       if (date == hourNow.toString()) {
-        return [new Date(), temperatures[index]];
+        return temperatures[index];
       }
       index++;
     }
-    return [new Date(), temperatures[index]];
+    return temperatures[index];
   }
 
 }
