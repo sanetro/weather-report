@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PanelComponent } from './panel.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+
+
 
 
 
@@ -11,7 +14,8 @@ import {MatTabsModule} from '@angular/material/tabs';
   ],
   imports: [
     CommonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule
   ],
   exports: [
     PanelComponent

@@ -2,16 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class WeatherService {
 
+  url: any;
+
   constructor(private http: HttpClient) {
+    this.url = "https://api.open-meteo.com/v1/forecast?latitude=50.06&longitude=19.94&hourly=temperature_2m,relativehumidity_2m,rain,windspeed_10m";
   }
 
   getData() {
-    return this.http.get('https://api.open-meteo.com/v1/dwd-icon?latitude=50.06&longitude=19.94&hourly=temperature_2m');
+    return this.http.get(this.url);
   }
 
   // Get hour time from this "2023-06-29T12:00" and return "12"
@@ -43,7 +49,6 @@ export class WeatherService {
     let index = 0;
 
     for (const date in dates) {
-      console.log(temperatures);
       if (date == hourNow.toString()) {
         return temperatures[index];
       }
