@@ -1,43 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class WeatherService {
 
-  private url: any;
-
+  private url: string;
+  private data: any;
 
   constructor(private http: HttpClient) {
     this.url = "https://api.open-meteo.com/v1/forecast?latitude=50.06&longitude=19.94&hourly=temperature_2m,relativehumidity_2m,rain,windspeed_10m";
+    this.getData();
   }
 
   getData() {
-    return this.http.get(this.url);
+    return this.http.get(this.url).subscribe(data => {
+      this.data = data;
+    });
   }
 
-  getTimes() {
-    return this.url['hourly']['time'];
+  getTemperature(): number {
+    return this.data?.hourly?.temperature_2m || null;
   }
 
-  getTemperatures() {
-    return this.url['hourly']['temperature_2m'];
+  getHour(): string {
+    const date = new Date();
+    return `${date.getHours()}:00`;
   }
 
-  getRelativehumidity() {
-    return this.url['hourly']['relativehumidity_2m'];
+  getDay(): string {
+    const date = new Date();
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return weekdays[date.getDay()];
   }
 
-  getRain() {
-    return this.url['hourly']['rain'];
+  getRain(): number {
+    return this.data?.hourly?.rain || null;
   }
 
-  getWindspeed() {
-    return this.url['hourly']['windspeed_10m'];
+  getWindspeed(): number {
+    return this.data?.hourly?.windspeed_10m || null;
   }
 
   // Get hour time from this "2023-06-29T12:00" and return "12"
@@ -64,7 +67,11 @@ export class WeatherService {
     return formattedDate;
   }
 
-  getByHourActuallTemperature(dates: Date[], temperatures: number[]) {
+  getByHourActuallTemperature() {
+    let dates: Date[] = [];
+    let temperatures: number[] = [];
+    //let dates: never[] = []; this.data['hourly']['temperature_2m'];
+    //let temperatures = this.data['hourly']['time'];
     const hourNow = new Date().getHours();
     let index = 0;
 
@@ -89,5 +96,4 @@ export class WeatherService {
     }
     return windspeed[index];
   }
-
 }

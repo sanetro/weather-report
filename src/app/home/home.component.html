@@ -20,13 +20,14 @@
     </div>
 
 
-
-    <app-panel
-      [date]="todayDate"
-      [day]="todayDay"
-      [time]="todayHour"
-      [temperature]="todayTemperature">
-    </app-panel>
+    <div class="layoutConteiner">
+      <app-panel
+        [date]="todayDate"
+        [day]="todayDay"
+        [time]="todayHour"
+        [temperature]="todayTemperature">
+      </app-panel>
+    </div>
 
     <article>
       <p>{{ time }} {{temperature_2m}}With our app, you can quickly access up-to-date weather information in an instant. Whether you're planning your day, preparing for an outdoor adventure, or simply curious about the weather conditions, we've got you covered.</p><br>

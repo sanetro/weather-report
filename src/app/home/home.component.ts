@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherDataStructure } from '../weatherStats/weather-data-structure';
-import { WeatherForecast } from '../weatherStats/weather-forecast';
 import { WeatherService } from '../weatherStats/weather.service';
 
 @Component({
@@ -29,7 +28,7 @@ export class HomeComponent implements OnInit, WeatherDataStructure{
     this.todayDay = this.weatherService.getTodayDay();
     this.todayHour = this.weatherService.getHourTime();
     this.todayDate = this.weatherService.getTodayDate();
-    this.todayTemperature = 23;
+    this.todayTemperature = this.weatherService.getByHourActuallTemperature();
     this.temperature_2m = [23, 43, 12];
     this.time = ["12:00", "13:00", "14:00"];
   }
