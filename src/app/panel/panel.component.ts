@@ -3,7 +3,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 
 export interface WeatherStatistic {
-  name: string;
+  name: any;
   position: number;
   weight: number;
   symbol: string;
