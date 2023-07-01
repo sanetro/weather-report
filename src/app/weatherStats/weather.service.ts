@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +10,7 @@ import { Injectable } from '@angular/core';
 export class WeatherService {
 
   private url: any;
+
 
   constructor(private http: HttpClient) {
     this.url = "https://api.open-meteo.com/v1/forecast?latitude=50.06&longitude=19.94&hourly=temperature_2m,relativehumidity_2m,rain,windspeed_10m";
