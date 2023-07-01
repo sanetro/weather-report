@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 
 
 
-
+@Injectable({
+  providedIn: 'root'
+})
 
 export class WeatherService {
 
@@ -73,6 +75,19 @@ export class WeatherService {
       index++;
     }
     return temperatures[index];
+  }
+
+  getByHourActuallWindSpeed(dates: Date[], windspeed: number[]) {
+    const hourNow = new Date().getHours();
+    let index = 0;
+
+    for (const date in dates) {
+      if (date == hourNow.toString()) {
+        return windspeed[index];
+      }
+      index++;
+    }
+    return windspeed[index];
   }
 
 }

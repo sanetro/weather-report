@@ -13,7 +13,7 @@ import { PanelModule } from '../panel/panel.module';
   ],
   imports: [
     CommonModule,
-    PanelModule
+    PanelModule,
   ],
   exports: [
     HomeComponent

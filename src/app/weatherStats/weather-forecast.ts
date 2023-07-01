@@ -2,15 +2,9 @@ import { Injectable } from '@angular/core';
 import { WeatherDataStructure } from './weather-data-structure';
 import { WeatherService } from './weather.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-
 export class WeatherForecast implements WeatherDataStructure {
   private data: any;
   private dates: any;
-
-
 
   time: any;
   temperature_2m: any;
