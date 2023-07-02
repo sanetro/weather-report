@@ -294,6 +294,18 @@ svg#clouds {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
+.small-icons-today-weahter {
+  width: 25px;
+  height: 25px;
+}
+#todayWeatherRight table tr td {
+  padding: 5px;
+  margin: 5px;
+}
+#todayWeatherRight table{
+  margin: 0 auto;
+}
+
 
 
 

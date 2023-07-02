@@ -4,43 +4,39 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class WeatherService {
 
-  private url: string;
+  private url: any;
   private data: any;
 
   constructor(private http: HttpClient) {
     this.url = "https://api.open-meteo.com/v1/forecast?latitude=50.06&longitude=19.94&hourly=temperature_2m,relativehumidity_2m,rain,windspeed_10m";
-    this.getData();
+    this.data = this.http.get(this.url);
   }
 
   getData() {
-    return this.http.get(this.url).subscribe(data => {
-      this.data = data;
-    });
+    return this.http.get(this.url);
   }
 
-  getTemperature(): number {
-    return this.data?.hourly?.temperature_2m || null;
+  getTimes() {
+    return this.data['hourly']['time'];
   }
 
-  getHour(): string {
-    const date = new Date();
-    return `${date.getHours()}:00`;
+  getTemperatures() {
+    return this.data['hourly']['temperature_2m'];
   }
 
-  getDay(): string {
-    const date = new Date();
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return weekdays[date.getDay()];
+  getRelativehumidity() {
+    return this.data['hourly']['relativehumidity_2m'];
   }
 
-  getRain(): number {
-    return this.data?.hourly?.rain || null;
+  getRain() {
+    return this.data['hourly']['rain'];
   }
 
-  getWindspeed(): number {
-    return this.data?.hourly?.windspeed_10m || null;
+  getWindspeed() {
+    return this.data['hourly']['windspeed_10m'];
   }
 
   // Get hour time from this "2023-06-29T12:00" and return "12"
@@ -67,33 +63,19 @@ export class WeatherService {
     return formattedDate;
   }
 
-  getByHourActuallTemperature() {
-    let dates: Date[] = [];
-    let temperatures: number[] = [];
-    //let dates: never[] = []; this.data['hourly']['temperature_2m'];
-    //let temperatures = this.data['hourly']['time'];
+  getByHourActuallData(dates: Date[], data: any[]) {
     const hourNow = new Date().getHours();
     let index = 0;
 
     for (const date in dates) {
       if (date == hourNow.toString()) {
-        return temperatures[index];
+        return data[index];
       }
       index++;
     }
-    return temperatures[index];
+    return data[index];
   }
 
-  getByHourActuallWindSpeed(dates: Date[], windspeed: number[]) {
-    const hourNow = new Date().getHours();
-    let index = 0;
 
-    for (const date in dates) {
-      if (date == hourNow.toString()) {
-        return windspeed[index];
-      }
-      index++;
-    }
-    return windspeed[index];
-  }
+
 }

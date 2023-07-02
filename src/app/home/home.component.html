@@ -11,10 +11,25 @@
         <h1>{{location}}</h1>
       </div>
       <div id="todayWeatherRight" class="todayWeather">
-        <p>{{todayTemperature}} °C</p>
-        <p>{{todayDay}}</p>
-        <p>{{todayHour}}</p>
-        <p>{{todayDate}}</p>
+        <table>
+          <tr>
+            <td><img src="assets/images/thermometer.png" class="small-icons-today-weahter"></td>
+            <td><img src="assets/images/time.png" class="small-icons-today-weahter"></td>
+            <td><img src="assets/images/rain.png" class="small-icons-today-weahter"></td>
+            <td><img src="assets/images/wind.png" class="small-icons-today-weahter"></td>
+            <td><img src="assets/images/relativehumidity.png" class="small-icons-today-weahter"></td>
+            <td><img src="assets/images/date.png" class="small-icons-today-weahter"></td>
+          </tr>
+          <tr>
+            <td><p>{{todayTemperature }} °C</p></td>
+            <td><p>{{todayHour}}</p></td>
+            <td><p>{{todayRain}}</p></td>
+            <td><p>{{todayWindspeed}}</p></td>
+            <td><p>{{todayRelativehumidity}}</p></td>
+            <td><p>{{todayDate}}</p></td>
+          </tr>
+        </table>
+        <h1>{{todayDay}}</h1>
       </div>
       <div style="clear: both"></div>
     </div>
@@ -34,6 +49,14 @@
       <p>Stay informed about the temperature, humidity, wind speed, and atmospheric conditions. Our app ensures that you are always prepared with the most accurate and reliable weather information available.</p><br>
     </article>
 
+    <article>
+      <h1>tutaj</h1>
+      <ul>
+        <li>
+          {{myData | json}}
+        </li>
+      </ul>
+    </article>
 
     <img id="guy-with-stick-and-board" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F059%2F987%2Foriginal%2Fbusinessman-presenting-analytical-results-concept-illustration-vector.jpg&f=1&nofb=1&ipt=53d8ef0c581e4379292f29ac49a3b679dc98a0b66a27936376332de6d4b647a9&ipo=images">
 
