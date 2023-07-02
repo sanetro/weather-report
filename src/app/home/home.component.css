@@ -280,7 +280,7 @@ svg#clouds {
 #todayWeatherRight {
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px;
-  height: 175px;
+  height: 196px;
 }
 
 #todayWeatherLeft {
@@ -295,22 +295,29 @@ svg#clouds {
 }
 
 .small-icons-today-weahter {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
 }
+
 #todayWeatherRight table tr td {
   padding: 5px;
   margin: 5px;
 }
+
+#todayWeatherRight table tr {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
 #todayWeatherRight table{
-  margin: 0 auto;
+  margin: 20px auto;
+  width: 100%;
 }
 
 
 
 
 /* Responsive Styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 993px) {
   .card-container > *:not(.circle-link) ,
   .terminal {
     width: 100%;
@@ -325,15 +332,38 @@ svg#clouds {
     margin-left: 72px;
   }
 
-  svg#rocket-smoke {
-    right: 120px;
-    transform: rotate(-5deg);
+  .todayWeather {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    clear: both;
+    width: 440px;
   }
+
+  .todayWeatherSpan {
+    margin: 0 auto !important;
+    margin-bottom: 350px!important;
+width: 80%;
+
+  }
+
+  #todayWeatherRight {
+    border-radius: 8px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 100%;
+
+  }
+
+  #todayWeatherLeft {
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 100%;
+
+  }
+
 }
 
-@media screen and (max-width: 575px) {
-  svg#rocket-smoke {
-    display: none;
-    visibility: hidden;
-  }
-}
+
+

@@ -3,12 +3,12 @@
   <section class="informations">
     <h1>Welcome to the <span style="color: #0a86e7">Weather Report</span> App!</h1>
     <h2><i>Built for easy and fast weather checks...</i></h2>
-
     <div class="todayWeatherSpan">
       <div id="todayWeatherLeft" class="todayWeather">
         <img id="city-location-icon" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthemodestack.com%2Fwp-content%2Fuploads%2F2018%2F05%2Fcity-icon.png&f=1&nofb=1&ipt=3bc7390cfb16faf95419da087e14bfc755e41441d0c077cbd00ce0561df087d9&ipo=images">
-
+        <br>
         <h1>{{location}}</h1>
+        <sup>Today.. Right now forecast</sup>
       </div>
       <div id="todayWeatherRight" class="todayWeather">
         <table>
@@ -18,22 +18,25 @@
             <td><img src="assets/images/rain.png" class="small-icons-today-weahter"></td>
             <td><img src="assets/images/wind.png" class="small-icons-today-weahter"></td>
             <td><img src="assets/images/relativehumidity.png" class="small-icons-today-weahter"></td>
-            <td><img src="assets/images/date.png" class="small-icons-today-weahter"></td>
           </tr>
           <tr>
-            <td><p>{{todayTemperature }} °C</p></td>
+            <td><p>{{todayTemperature }}</p></td>
             <td><p>{{todayHour}}</p></td>
             <td><p>{{todayRain}}</p></td>
             <td><p>{{todayWindspeed}}</p></td>
             <td><p>{{todayRelativehumidity}}</p></td>
-            <td><p>{{todayDate}}</p></td>
+          </tr>
+          <tr>
+            <td><p>°C</p></td>
+            <td><p>(24)</p></td>
+            <td><p>mm</p></td>
+            <td><p>km/h</p></td>
+            <td><p>%</p></td>
           </tr>
         </table>
-        <h1>{{todayDay}}</h1>
       </div>
-      <div style="clear: both"></div>
     </div>
-
+    <div style="clear:both"></div>
 
     <div class="layoutConteiner">
       <app-panel
