@@ -20,15 +20,15 @@
             <td><img src="assets/images/relativehumidity.png" class="small-icons-today-weahter"></td>
           </tr>
           <tr>
-            <td><p>{{todayTemperature }}</p></td>
-            <td><p>{{todayHour}}</p></td>
-            <td><p>{{todayRain}}</p></td>
-            <td><p>{{todayWindspeed}}</p></td>
-            <td><p>{{todayRelativehumidity}}</p></td>
+            <td><p>{{weatherNow['temperature'] }}</p></td>
+            <td><p>{{weatherNow['hour']}}</p></td>
+            <td><p>{{weatherNow['rain']}}</p></td>
+            <td><p>{{weatherNow['windspeed']}}</p></td>
+            <td><p>{{weatherNow['relativehumidity']}}</p></td>
           </tr>
           <tr>
             <td><p>°C</p></td>
-            <td><p>(24)</p></td>
+            <td><p>(24h)</p></td>
             <td><p>mm</p></td>
             <td><p>km/h</p></td>
             <td><p>%</p></td>
@@ -40,23 +40,35 @@
 
     <div class="layoutConteiner">
       <app-panel
-        [date]="todayDate"
-        [day]="todayDay"
-        [time]="todayHour"
-        [temperature]="todayTemperature">
+        [forecastToday]="forecastToday"
+        [forecastTomorrow]="forecastTomorrow"
+        [forecastTheFollowingDay]="forecastTheFollowingDay">
       </app-panel>
     </div>
 
     <article>
-      <p>{{ time }} {{temperature_2m}}With our app, you can quickly access up-to-date weather information in an instant. Whether you're planning your day, preparing for an outdoor adventure, or simply curious about the weather conditions, we've got you covered.</p><br>
+
+      <p>With our app, you can quickly access up-to-date weather information in an instant. Whether you're planning your day, preparing for an outdoor adventure, or simply curious about the weather conditions, we've got you covered.</p><br>
       <p>Stay informed about the temperature, humidity, wind speed, and atmospheric conditions. Our app ensures that you are always prepared with the most accurate and reliable weather information available.</p><br>
     </article>
 
     <article>
       <h1>tutaj</h1>
       <ul>
-        <li>
-          {{myData | json}}
+        <li style="width: 1000px">
+          {{ forecastToday['times'] }}
+        </li>
+        <li style="width: 1000px">
+          {{ forecastToday['temperatures'] }}
+        </li >
+        <li style="width: 1000px">
+          {{ forecastToday['rains'] }}
+        </li>
+        <li style="width: 1000px">
+          {{ forecastToday['windspeeds'] }}
+        </li>
+        <li style="width: 1000px">
+          {{ forecastToday['relativehumiditys'] }}
         </li>
       </ul>
     </article>

@@ -1,26 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { HomeComponent } from '../home/home.component';
 
 export interface WeatherStatistic {
-  name: any;
-  position: number;
-  weight: number;
-  symbol: string;
+  time: string;
+  temperature: number;
+  rain: number;
+  windspeed: number;
+  relativehumiditys: number;
 }
 
-let ELEMENT_DATA: WeatherStatistic[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+let ELEMENT_DATA: WeatherStatistic[] = [];
 
 @Component({
   selector: 'app-panel',
@@ -29,11 +20,25 @@ let ELEMENT_DATA: WeatherStatistic[] = [
 })
 
 export class PanelComponent {
-  @Input() date: any;
-  @Input() day: any;
-  @Input() time: any;
-  @Input() temperature: any;
+  @Input() forecastToday: Record<string, any> = {};
+  @Input() forecastTomorrow: Record<string, any> = {};
+  @Input() forecastTheFollowingDay: Record<string, any> = {};
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
+  ngOnInit() : void {
+    console.log(this.forecastToday['times']);
+    for (let i = 0; i < this.forecastToday['times'].length ; i++){
+      ELEMENT_DATA.push( {
+        time: this.forecastToday['times'][i],
+        temperature: this.forecastToday['temperature'][i],
+        rain: this.forecastToday['rain'][i],
+        windspeed: this.forecastToday['windspeed'][i],
+        relativehumiditys: this.forecastToday['relativehumiditys'][i]}
+      );
+    }
+  }
+
+
+  displayedColumns: string[] = ['time', 'temperature', 'rain', 'windspeed', 'relativehumiditys'];
   dataSource = ELEMENT_DATA;
 }
