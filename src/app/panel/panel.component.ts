@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { HomeComponent } from '../home/home.component';
+import { WeatherService } from '../weatherStats/weather.service';
 
 export interface WeatherStatistic {
   time: string;
@@ -20,20 +21,59 @@ let ELEMENT_DATA: WeatherStatistic[] = [];
 })
 
 export class PanelComponent {
-  @Input() forecastToday: Record<string, any> = {};
-  @Input() forecastTomorrow: Record<string, any> = {};
-  @Input() forecastTheFollowingDay: Record<string, any> = {};
+  @Input() forecastToday: any;
+  @Input() forecastTomorrow: any;
+  @Input() forecastTheFollowingDay: any;
+
+  constructor(private weatherService: WeatherService) {
+  }
+
+  myData: any;
 
 
   ngOnInit() : void {
-    console.log(this.forecastToday['times']);
-    for (let i = 0; i < this.forecastToday['times'].length ; i++){
+    this.myData = this.weatherService
+      .getData()
+      .subscribe((data) => {
+        this.myData = data
+
+        // Store data
+        let times: any = this.myData['hourly']['time'];
+        let temperatures: any = this.myData['hourly']['temperature_2m'];
+        let windspeeds: any = this.myData['hourly']['windspeed_10m'];
+        let rains: any = this.myData['hourly']['rain'];
+        let relativehumiditys: any = this.myData['hourly']['relativehumidity_2m'];
+
+        // Forecast today - to panel "Today"
+        this.forecastToday['times'] = times;
+        this.forecastToday['temperatures'] = temperatures;
+        this.forecastToday['windspeeds'] = windspeeds;
+        this.forecastToday['rains'] = rains
+        this.forecastToday['relativehumiditys'] = relativehumiditys;
+
+        // Forecast tomorrow - to panel "tomorrow"
+        this.forecastTomorrow['times'] = times;
+        this.forecastTomorrow['temperatures'] = temperatures;
+        this.forecastTomorrow['windspeeds'] = windspeeds;
+        this.forecastTomorrow['rains'] = rains
+        this.forecastTomorrow['relativehumiditys'] = relativehumiditys;
+
+        // Forecast the following day - to panel "the following day"
+        this.forecastTheFollowingDay['times'] = times;
+        this.forecastTheFollowingDay['temperatures'] = temperatures;
+        this.forecastTheFollowingDay['windspeeds'] = windspeeds;
+        this.forecastTheFollowingDay['rains'] = rains
+        this.forecastTheFollowingDay['relativehumiditys'] = relativehumiditys;
+      })
+    ;
+
+    for (let i = 0; i < 5 ; i++){
       ELEMENT_DATA.push( {
-        time: this.forecastToday['times'][i],
-        temperature: this.forecastToday['temperature'][i],
-        rain: this.forecastToday['rain'][i],
-        windspeed: this.forecastToday['windspeed'][i],
-        relativehumiditys: this.forecastToday['relativehumiditys'][i]}
+        time: "12:32",
+        temperature: 23,
+        rain: 12.2,
+        windspeed: 235,
+        relativehumiditys: 13}
       );
     }
   }
