@@ -1,5 +1,7 @@
 # WeatherReport
 
+<img src="./src/assets/gifs/Weather_report_1.0-1.gif">
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
 ## Development server
