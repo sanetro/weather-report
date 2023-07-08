@@ -1,42 +1,36 @@
 /* Footer styles */
 footer {
+  margin-top: 200px;
   background-color: #f2f2f2;
   padding: 20px 0;
 }
-
 .container {
   max-width: 960px;
   margin: 0 auto;
   text-align: center;
 }
-
 p {
   margin: 0;
   font-size: 14px;
   color: #888;
 }
-
 .social-links {
   list-style-type: none;
   padding: 0;
   margin-top: 10px;
 }
-
 .social-links li {
   display: inline-block;
   margin-right: 10px;
 }
-
 .social-links li a {
   color: #888;
   text-decoration: none;
   font-size: 16px;
 }
-
 .social-links li a:hover {
   color: #333;
 }
-
 .social-links li i {
   margin-right: 5px;
 }
