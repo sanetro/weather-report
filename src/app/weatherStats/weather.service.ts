@@ -54,13 +54,26 @@ export class WeatherService {
     return weekdays[date.getDay()];
   }
 
+  getFormatedDateDDMMYY(date: Date) {
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth()+1).padStart(2, '0');
+    let year = date.getFullYear();
+    let formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  }
+
+
   getTodayDate() {
     let currentDate = new Date();
-    let day = String(currentDate.getDate()).padStart(2, '0');
-    let month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    let year = currentDate.getFullYear();
-    let formattedDate = `${day}.${month}.${year}`;
-    return formattedDate;
+    return this.getFormatedDateDDMMYY(currentDate);
+  }
+  getTommorowDate() {
+    let tommorowDate = new Date(new Date().setDate(new Date().getDate() + 1));
+    return this.getFormatedDateDDMMYY(tommorowDate);
+  }
+  getAfterTommorowDate() {
+    let tommorowDate = new Date(new Date().setDate(new Date().getDate() + 2));
+    return this.getFormatedDateDDMMYY(tommorowDate);
   }
 
   getByHourActuallData(dates: Date[], data: any[]) {
@@ -74,6 +87,10 @@ export class WeatherService {
       index++;
     }
     return data[index];
+  }
+
+  checkTwoDates(givenDate: string, orderDate: string) {
+    return (givenDate == orderDate.slice(0,10));
   }
 
 

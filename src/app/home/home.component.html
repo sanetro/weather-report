@@ -3,13 +3,16 @@
   <section class="informations">
     <h1>Welcome to the <span style="color: #0a86e7">Weather Report</span> App!</h1>
     <h2><i>Built for easy and fast weather checks...</i></h2>
+
     <div class="todayWeatherSpan">
+      <p class="background-title-segment">Statistics Today</p>
       <div id="todayWeatherLeft" class="todayWeather">
         <img id="city-location-icon" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthemodestack.com%2Fwp-content%2Fuploads%2F2018%2F05%2Fcity-icon.png&f=1&nofb=1&ipt=3bc7390cfb16faf95419da087e14bfc755e41441d0c077cbd00ce0561df087d9&ipo=images">
         <br>
         <h1>{{location}}</h1>
-        <sup>Today.. Right now forecast</sup>
+        <sup>Today.. Right now..</sup>
       </div>
+
       <div id="todayWeatherRight" class="todayWeather">
         <table>
           <tr>
@@ -20,7 +23,7 @@
             <td><img src="assets/images/relativehumidity.png" class="small-icons-today-weahter"></td>
           </tr>
           <tr>
-            <td><p>{{weatherNow['temperature'] }}</p></td>
+            <td><p>{{weatherNow['temperature']}}</p></td>
             <td><p>{{weatherNow['hour']}}</p></td>
             <td><p>{{weatherNow['rain']}}</p></td>
             <td><p>{{weatherNow['windspeed']}}</p></td>
@@ -37,62 +40,26 @@
       </div>
     </div>
     <div style="clear:both"></div>
+  </section>
+
+  <section class="informations" style="width: 100%">
+
+    <p class="background-title-segment">Forecasts</p>
 
     <div class="layoutConteiner">
       <app-panel></app-panel>
     </div>
 
-    <article>
+  </section>
 
+  <section class="informations">
+    <p class="background-title-segment">About us</p>
+    <article>
       <p>With our app, you can quickly access up-to-date weather information in an instant. Whether you're planning your day, preparing for an outdoor adventure, or simply curious about the weather conditions, we've got you covered.</p><br>
       <p>Stay informed about the temperature, humidity, wind speed, and atmospheric conditions. Our app ensures that you are always prepared with the most accurate and reliable weather information available.</p><br>
-    </article>
-
-    <article>
-      <h1>tutaj</h1>
-      <ul>
-        <li style="width: 1000px">
-          {{ forecastToday['times'] }}
-        </li>
-        <li style="width: 1000px">
-          {{ forecastToday['temperatures'] }}
-        </li >
-        <li style="width: 1000px">
-          {{ forecastToday['rains'] }}
-        </li>
-        <li style="width: 1000px">
-          {{ forecastToday['windspeeds'] }}
-        </li>
-        <li style="width: 1000px">
-          {{ forecastToday['relativehumiditys'] }}
-        </li>
-      </ul>
-    </article>
-
-    <img id="guy-with-stick-and-board" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F059%2F987%2Foriginal%2Fbusinessman-presenting-analytical-results-concept-illustration-vector.jpg&f=1&nofb=1&ipt=53d8ef0c581e4379292f29ac49a3b679dc98a0b66a27936376332de6d4b647a9&ipo=images">
-
-    <article>
       <p>No matter where you are or where you're headed, the Weather Report App is here to make your weather checks a breeze. Experience the convenience and efficiency of staying ahead of the weather with just a few taps.</p><br>
       <p><b>Download the app now and embark on a seamless journey of weather exploration!</b></p><br>
     </article>
-    <article>
-      Napisać aplikację frontendową, która będzie prezentowała pogodę.<br><br>
-
-      Aplikacja ma mieć następujące funkcje/ekrany:<br><br>
-
-      strona główna z obecną pogodą w Krakowie oraz pogodą jutro, oraz pojutrze<br><br>
-      pogoda godzinowa na wybrany dzień
-
-      Jeśli chodzi o wygląd interfejsu, to powinien być oparty na material design.<br><br>
-
-      Na ocenę 5.0 wymagane jest pobieranie danych z https://open-meteo.com/en/docs.<br><br>
-
-      Alpikację proszę umieścić na githubie oraz wysłać mi link na Teams.<br><br>
-    </article>
   </section>
-
-
-
-
 
 </div>
