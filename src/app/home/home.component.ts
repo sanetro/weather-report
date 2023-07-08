@@ -12,8 +12,7 @@ export class HomeComponent implements OnInit{
   myData: any;
   weatherNow: Record<string, any> = {};
   forecastToday: Record<string, any> = {};
-  forecastTomorrow: Record<string, any> = {};
-  forecastTheFollowingDay: Record<string, any> = {};
+
 
   constructor(private weatherService: WeatherService) {
   }
@@ -40,26 +39,6 @@ export class HomeComponent implements OnInit{
         this.weatherNow['rain'] = this.weatherService.getByHourActuallData(times, rains);
         this.weatherNow['relativehumidity'] = this.weatherService.getByHourActuallData(times, relativehumiditys);
 
-        // Forecast today - to panel "Today"
-        this.forecastToday['times'] = times;
-        this.forecastToday['temperatures'] = temperatures;
-        this.forecastToday['windspeeds'] = windspeeds;
-        this.forecastToday['rains'] = rains
-        this.forecastToday['relativehumiditys'] = relativehumiditys;
-
-        // Forecast tomorrow - to panel "tomorrow"
-        this.forecastTomorrow['times'] = times;
-        this.forecastTomorrow['temperatures'] = temperatures;
-        this.forecastTomorrow['windspeeds'] = windspeeds;
-        this.forecastTomorrow['rains'] = rains
-        this.forecastTomorrow['relativehumiditys'] = relativehumiditys;
-
-        // Forecast the following day - to panel "the following day"
-        this.forecastTheFollowingDay['times'] = times;
-        this.forecastTheFollowingDay['temperatures'] = temperatures;
-        this.forecastTheFollowingDay['windspeeds'] = windspeeds;
-        this.forecastTheFollowingDay['rains'] = rains
-        this.forecastTheFollowingDay['relativehumiditys'] = relativehumiditys;
       })
     ;
   }
