@@ -21,17 +21,15 @@ let ELEMENT_DATA_THIRD: WeatherStatistic[] = [];
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.css'],
 })
+
 export class PanelComponent {
-  forecastToday: Record<string, any> = {};
-  forecastTomorrow: Record<string, any> = {};
-  forecastTheDayAfterTomorrow: Record<string, any> = {};
-
-  constructor(private weatherService: WeatherService) {}
-
   myData: any;
+  forecast: Record<string, any> = {};
   dataSourceFirst: WeatherStatistic[] = [];
   dataSourceSecond: WeatherStatistic[] = [];
   dataSourceThird: WeatherStatistic[] = [];
+
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.myData = this.weatherService.getData().subscribe((data) => {
@@ -44,60 +42,43 @@ export class PanelComponent {
       let rains: any = this.myData['hourly']['rain'];
       let relativehumiditys: any = this.myData['hourly']['relativehumidity_2m'];
 
-      // Forecast today - to panel "Today"
-      this.forecastToday['times'] = times;
-      this.forecastToday['temperatures'] = temperatures;
-      this.forecastToday['windspeeds'] = windspeeds;
-      this.forecastToday['rains'] = rains;
-      this.forecastToday['relativehumiditys'] = relativehumiditys;
+      // Forecast is completing data fetched from API
+      this.forecast['times'] = times;
+      this.forecast['temperatures'] = temperatures;
+      this.forecast['windspeeds'] = windspeeds;
+      this.forecast['rains'] = rains;
+      this.forecast['relativehumiditys'] = relativehumiditys;
 
-      // Forecast tomorrow - to panel "tomorrow"
-      this.forecastTomorrow['times'] = times;
-      this.forecastTomorrow['temperatures'] = temperatures;
-      this.forecastTomorrow['windspeeds'] = windspeeds;
-      this.forecastTomorrow['rains'] = rains;
-      this.forecastTomorrow['relativehumiditys'] = relativehumiditys;
+      // 1. Adding from arrays of time, temperature, rain, etc. to the "forecastData" container.
+      // 2. In switch is checked if date is today, tommorow or after tommorow by weatherService.checkTwoDates
+      // 3. In weatherService.checkTwoDates is checked if today date is in forecastData, it gets every record related with that date
+      // 4. Next is sort to ELEMENT_DATA_<numerated> these records of data and pushed to the panel.components, which can be loaded to tabs
+      for (let i = 0; i < this.forecast['times'].length; i++) {
+        const currentDate = this.weatherService.getTodayDate();
+        const forecastTime = this.forecast['times'][i];
+        const forecastData = { // 1.
+          time: forecastTime,
+          temperature: this.forecast['temperatures'][i],
+          rain: this.forecast['rains'][i],
+          windspeed: this.forecast['windspeeds'][i],
+          relativehumiditys: this.forecast['relativehumiditys'][i],
+        };
 
-      // Forecast the day after tomorrow - to panel "the day after tomorrow"
-      this.forecastTheDayAfterTomorrow['times'] = times;
-      this.forecastTheDayAfterTomorrow['temperatures'] = temperatures;
-      this.forecastTheDayAfterTomorrow['windspeeds'] = windspeeds;
-      this.forecastTheDayAfterTomorrow['rains'] = rains;
-      this.forecastTheDayAfterTomorrow['relativehumiditys'] = relativehumiditys;
-
-      for (let i = 0; i < this.forecastToday['times'].length; i++)
-      {
-        if (this.weatherService.checkTwoDates(this.weatherService.getTodayDate(), this.forecastToday['times'][i])) {
-          ELEMENT_DATA_FIRST.push({
-            time: this.forecastToday['times'][i],
-            temperature: this.forecastToday['temperatures'][i],
-            rain: this.forecastToday['rains'][i],
-            windspeed: this.forecastToday['windspeeds'][i],
-            relativehumiditys: this.forecastToday['relativehumiditys'][i],
-          });
-        }
-        if (this.weatherService.checkTwoDates(this.weatherService.getTommorowDate(), this.forecastToday['times'][i])) {
-          ELEMENT_DATA_SECOND.push({
-            time: this.forecastToday['times'][i],
-            temperature: this.forecastToday['temperatures'][i],
-            rain: this.forecastToday['rains'][i],
-            windspeed: this.forecastToday['windspeeds'][i],
-            relativehumiditys: this.forecastToday['relativehumiditys'][i],
-          });
-        }
-        if (this.weatherService.checkTwoDates(this.weatherService.getAfterTommorowDate(), this.forecastToday['times'][i])) {
-          ELEMENT_DATA_THIRD.push({
-            time: this.forecastToday['times'][i],
-            temperature: this.forecastToday['temperatures'][i],
-            rain: this.forecastToday['rains'][i],
-            windspeed: this.forecastToday['windspeeds'][i],
-            relativehumiditys: this.forecastToday['relativehumiditys'][i],
-          });
+        switch (true) { // 2.
+          case this.weatherService.checkTwoDates(currentDate, forecastTime): // 3.
+            ELEMENT_DATA_FIRST.push(forecastData);
+            break;
+          case this.weatherService.checkTwoDates(this.weatherService.getTommorowDate(), forecastTime): // 3.
+            ELEMENT_DATA_SECOND.push(forecastData);
+            break;
+          case this.weatherService.checkTwoDates(this.weatherService.getAfterTommorowDate(), forecastTime): // 3.
+            ELEMENT_DATA_THIRD.push(forecastData);
+            break;
         }
       }
-      this.dataSourceFirst = ELEMENT_DATA_FIRST;
-      this.dataSourceSecond = ELEMENT_DATA_SECOND;
-      this.dataSourceThird = ELEMENT_DATA_THIRD;
+      this.dataSourceFirst = ELEMENT_DATA_FIRST; // 4.
+      this.dataSourceSecond = ELEMENT_DATA_SECOND; // 4.
+      this.dataSourceThird = ELEMENT_DATA_THIRD; // 4.
     });
   }
 
